@@ -8,8 +8,11 @@ menu = """1) Today's tasks
 
 def task_print():
     tasks = get_tasks()
-    for i, task in enumerate(tasks, 1):
-        print(f"{i}. {task}")
+    if tasks:
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task}")
+    else:
+        print("Nothing to do!")
 
 
 
