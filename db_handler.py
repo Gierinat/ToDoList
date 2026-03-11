@@ -1,10 +1,10 @@
 from datetime import datetime
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import Column, String, Integer, Date
 
 
-engine = create_engine('sqlite:///todo.db?check_same_thread=False', echo=True)
+engine = create_engine('sqlite:///todo.db?check_same_thread=False', echo=False)
 Base = declarative_base()
 
 class Task(Base):
@@ -16,3 +16,12 @@ class Task(Base):
 
 
 Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+
+def add_task(task):
+    pass
+
+def get_tasks():
+    session = Session()
+    rows = session.query(Task).all()
+    return rows

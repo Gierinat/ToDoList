@@ -1,14 +1,32 @@
-tasks = ["Do yoga", "Make a breakfast", "Learn the basics of SQL", "Learn about ORM"]
+from db_handler import get_tasks
 
 
-def task_print(tasks):
+menu = """1) Today's tasks
+2) Add a task
+0) Exit"""
+
+
+def task_print():
+    tasks = get_tasks()
     for i, task in enumerate(tasks, 1):
-        print(f"{i}) {task}")
+        print(f"{i}. {task}")
+
+
 
 
 def main():
-    print("Today:")
-    task_print(tasks)
+    while True:
+        print(menu)
+        choice = input()
+        if choice == "1":
+            print("Today:")
+            task_print()
+            print()
+        if choice == "2":
+            pass
+        if choice == "0":
+            print("Bye!")
+            break
 
 
 if __name__ == "__main__":
