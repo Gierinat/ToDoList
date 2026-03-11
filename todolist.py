@@ -1,4 +1,4 @@
-from db_handler import get_tasks
+from db_handler import get_tasks, Task, save_task
 
 
 menu = """1) Today's tasks
@@ -10,11 +10,16 @@ def task_print():
     tasks = get_tasks()
     if tasks:
         for i, task in enumerate(tasks, 1):
-            print(f"{i}. {task}")
+            print(f"{i}. {task.task}")
     else:
         print("Nothing to do!")
 
 
+def add_task():
+    print("Enter a task")
+    text = input()
+    task = Task(task=text)
+    save_task(task)
 
 
 def main():
@@ -26,7 +31,7 @@ def main():
             task_print()
             print()
         if choice == "2":
-            pass
+            add_task()
         if choice == "0":
             print("Bye!")
             break

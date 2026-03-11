@@ -18,8 +18,10 @@ class Task(Base):
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
-def add_task(task):
-    pass
+def save_task(task):
+    session = Session()
+    session.add(task)
+    session.commit()
 
 def get_tasks():
     session = Session()
