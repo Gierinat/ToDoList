@@ -1,7 +1,8 @@
 from db_handler import get_tasks, Task, save_task
 
 
-menu = """1) Today's tasks
+menu = """
+1) Today's tasks
 2) Add a task
 0) Exit"""
 
@@ -16,10 +17,11 @@ def task_print():
 
 
 def add_task():
-    print("Enter a task")
+    print("\nEnter a task")
     text = input()
     task = Task(task=text)
     save_task(task)
+    print('The task has been added!')
 
 
 def main():
@@ -27,13 +29,13 @@ def main():
         print(menu)
         choice = input()
         if choice == "1":
-            print("Today:")
+            print("\nToday:")
             task_print()
             print()
         if choice == "2":
             add_task()
-        if choice == "0":
-            print("Bye!")
+        if choice == "0" or not choice:
+            print("\nBye!")
             break
 
 

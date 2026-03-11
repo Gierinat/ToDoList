@@ -8,7 +8,7 @@ engine = create_engine('sqlite:///todo.db?check_same_thread=False', echo=False)
 Base = declarative_base()
 
 class Task(Base):
-    __tablename__ = 'Task'
+    __tablename__ = 'task'
 
     id = Column(Integer, primary_key=True)
     task = Column(String(255))
