@@ -12,13 +12,16 @@ menu = """
 
 
 def task_print(mode='all'):
-    tasks = get_tasks()
+    tasks = get_tasks(mode)
 
     if tasks and mode == 'all':
         for i, task in enumerate(tasks, 1):
             day = task.deadline.strftime('%d')
             month = task.deadline.strftime('%b')
             print(f"{i}. {task.task}. {day} {month}")
+    elif tasks:
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task.task}")
     else:
         print("Nothing to do!")
 

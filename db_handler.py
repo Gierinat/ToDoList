@@ -25,7 +25,14 @@ def save_task(task):
     session.commit()
 
 
-def get_tasks():
+def get_tasks(mode):
     session = Session()
-    rows = session.query(Task).all()
+
+    if mode == 'all':
+        rows = session.query(Task).order_by(Task.deadline).all()
+    elif mode == 'today':
+        rows = session.query(Task).filter(Task.deadline == datetime.today().date()).all()
+    else:
+        rows = None
+
     return rows
