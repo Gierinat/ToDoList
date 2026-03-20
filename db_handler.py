@@ -11,17 +11,19 @@ class Task(Base):
     __tablename__ = 'task'
 
     id = Column(Integer, primary_key=True)
-    task = Column(String(255))
+    task = Column(String())
     deadline = Column(Date, default=datetime.today())
 
 
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
+
 def save_task(task):
     session = Session()
     session.add(task)
     session.commit()
+
 
 def get_tasks():
     session = Session()
