@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import Column, String, Integer, Date
@@ -30,6 +30,10 @@ def get_tasks(mode):
 
     if mode == 'all':
         rows = session.query(Task).order_by(Task.deadline).all()
+    elif mode == 'week':
+        next_week = datetime.today() + timedelta(days=7)
+        rows = session.query(Task).filter(Task.deadline >= datetime.today().date(),
+                                          Task.deadline < next_week.date()).order_by(Task.deadline).all()
     elif mode == 'today':
         rows = session.query(Task).filter(Task.deadline == datetime.today().date()).all()
     else:
