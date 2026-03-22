@@ -7,9 +7,7 @@ menu = """
 1) Today's tasks
 2) Week's tasks
 3) All tasks
-4) Missed tasks
-5) Add a task
-6) Delete a task
+4) Add a task
 0) Exit
 """
 
@@ -23,7 +21,7 @@ def task_print(mode='all'):
             month = task.deadline.strftime('%b')
             print(f"{i}. {task.task}. {day} {month}")
 
-    elif tasks and mode == 'week':
+    elif mode == 'week':
         week_dict = {date.today() + timedelta(days=i) : [] for i in range(7)}
         for task in tasks:
             week_dict[task.deadline].append(task.task)
